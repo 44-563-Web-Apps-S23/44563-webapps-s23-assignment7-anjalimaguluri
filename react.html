@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Anjali React</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Indie+Flower&display=swap" rel="stylesheet">
+        
+        <style>
+            h1 {
+              color:black;
+               font-family:Georgia, 'Times New Roman', Times, serif;
+               font-weight: bold;
+               padding: 6px;
+               margin-bottom: 6px;
+               text-shadow: 4px 4px paleturquoise;
+               
+            }
+            .menu {
+                background-color:beige;
+                color:darkseagreen;
+                padding: 10px;
+                text-align: center;
+                width: 300px;
+                margin-left: 400px;
+            }
+            #target {
+                background-color:lavender;
+                font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-weight: 700;
+                font-size: 20px;
+                margin: 9px;
+            }
+            #counter {
+                background-color:lavender;
+                font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-weight: 700;
+                font-size: 20px;
+                margin:9px;
+            }
+            button {
+                margin: 15px;
+            }
+        </style>
+    </head>
+    <body style="background-color:darkturquoise;">
+        <div class="container text-center">
+            <h1 style="margin-bottom: 6px;margin-top: 12px;">Anjali React Timer</h1>
+            <div class="row menu">
+                <div class="col-md">
+                    <p id="target">Your time</p>
+                </div>
+                <div class="col-md"> <p id="counter">Count</p></div>
+            </div>
+            <div class="container text-center">
+                <button class="btn btn-danger" type="submit" onclick="startTime()">Start Timer</button>
+                <button class="btn btn-warning" type="submit" onclick="recordTime()">React</button>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            var reactTime = undefined;
+            function  recordTime()
+            {
+                reactTime = Date.now()
+                console.log(reactTime)
+            }
+            
+            function startTime() 
+            {
+                let counter = Math.floor(Math.random() * 9) + 2;
+                console.log()
+                for(let i = 0; i < counter; i++)
+                {
+                    setTimeout(() => {
+                        document.getElementById("counter").innerHTML = i
+                    }, ((counter-1-i)*1000));
+                }
+                setTimeout(() => {
+                    if(reactTime == undefined) 
+                    {
+                        document.getElementById("target").innerHTML = "Too Slow"
+                    } 
+                    else
+                    {
+                        let endTime = Date.now()
+                        document.getElementById("target").innerHTML = "Time was " + ( endTime - reactTime)
+                    }
+                }, 8000);
+            function randCount()
+             {
+                let rannum = Math.floor(Math.random()*9)+2;
+                return rannum;
+            }
+  
+
+            }
+        </script>
+    </body>
+</html>

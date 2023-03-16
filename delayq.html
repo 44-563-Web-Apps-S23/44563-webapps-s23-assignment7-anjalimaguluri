@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Anjali delayqueue page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Indie+Flower&display=swap" rel="stylesheet">
+        <style>
+            h1
+            {
+               color:black;
+               font-family:Georgia, 'Times New Roman', Times, serif;
+               padding: 10px;
+               margin-bottom: 15px;
+			   background-color:thistle;
+			   margin: 1px 250px;
+            }
+            .flex-container
+            {
+                      padding: 3px;
+                      display: flex;  flex-direction:row;
+                      background-color:powderblue;
+              }
+            .flex-container > div 
+            { 
+                  background-color:lightcyan; 
+                  color:green;
+                  margin: 15px;  padding: 15px;  font-size: 20px;
+            }
+            @media (max-width: 500px) 
+            { 
+                	 .flex-container
+                     {
+                         flex-direction:column;
+                         background-color: darkgreen;
+                     }
+        	}
+            button 
+            {
+                margin: 20px;
+            }
+            #inputElement 
+            {
+                padding: 15px;
+                width: 250px;
+                margin-left: 300px;
+            }
+            .message 
+            {
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                padding: 10px;
+            }
+            .delayq
+            {
+                color:pink;
+                font-size: 15px;
+            }		
+        </style>
+    </head>
+    <body style="background-color:cornsilk">
+        <div class="container text-center">
+        <h1 style="margin-bottom: 10px;margin-top: 15px;">Naganjali Maguluri builds a delaying queue</h1>
+        <br>
+        <div class="flex-container" id="target">
+            <div class="delayq" style="font-family:'Times New Roman', Times, serif">row item 1</div>   
+            <div class="delayq" style="font-family:'Times New Roman', Times, serif">row item 2</div>  
+            <div class="delayq" style="font-family:'Times New Roman', Times, serif">row item 3</div>  
+        </div>
+        <br>
+            <label for="inputElement" style="color:gray"><b><i>Type something: </i></b></label>
+        <br>
+
+          <input type="text" id="text_input" name="text_input" /><br />
+          <button onclick="makeNewDiv()">Add value</button>
+          <p>Press the button to add the last element to the container.</p>
+          <button class="btn btn-warning" onclick="get()">Get</button>
+          <button class="btn btn-info" onclick="delay()">Delay</button>
+        </div>
+        <br />
+        <div>
+          <button class="btn btn-primary" onclick="promotion()">Promote</button>
+        </div>
+      </div>
+    </body>
+    <script>
+    function makeNewDiv() 
+    {
+      let element = document.createElement("div");
+      let value  = document.getElementById("text_input").value;
+      element.innerHTML = value
+      element.className =  "delayq";
+      element.style.color = "black";
+      console.log(element)
+
+      let container = document.getElementById("target");
+      container.append(element, container.firstChild);
+    }
+    function get()
+    {
+      queueItems = document.getElementsByClassName("delayq");
+      if (queueItems.length > 1) 
+      {
+        queueItems[0].remove();
+      }
+    }
+    function delay() 
+    {
+      let queueItems = document.getElementsByClassName("delayq");
+      if (queueItems.length > 2) 
+      {
+        let element = queueItems[0];
+        queueItems[0].remove()
+        let container = document.getElementById("target");
+        container.append(element);
+      }
+    }
+
+    function promotion(){
+        let queueItems = document.getElementsByClassName("delayq");
+        let length = queueItems.length;
+        let queueItem = document.getElementsByClassName("delayq")[Math.floor(Math.random() * length)];
+        let container = document.getElementById("target");
+        container.insertBefore(queueItem, container.firstChild);
+    }
+  </script>
+</html>
