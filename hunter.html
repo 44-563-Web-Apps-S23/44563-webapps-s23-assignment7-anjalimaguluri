@@ -70,6 +70,7 @@
         <div id="penalty" class="col-sm menu-item score"> Penalty is zero</div>
         <div id="help" onclick="help()" class="col-sm menu-item help">Click for help</div>
         <div id="help" class="col-sm menu-item help">Help report</div>
+        <button onclick="restart()" type="submit" class="btn btn-success">random</button>
     </div>
     <br>
     <div class="row">
@@ -170,19 +171,22 @@
         penalty = penality + 2;
         document.getElementById("penalty").innerHTML = "Penalty is " + penalty
     }
-    function resetGame()
-     {
-      let mouseLocation = Math.floor(Math.random() * 24);
-      console.log("mouse location " +mouseLocation);
-      let catLocation = Math.floor(Math.random() * 24);
-      console.log("cat location " + catLocation);
-      document.getElementById("bushes").innerText = "Number of bushes checked is " + 0;
-      document.getElementById("penalty").innerText = "Penalty is " + 0;
-        for(i=0;i<24;i++)
+    function restart() 
+    {
+            
+        document.getElementById("bushes").innerHTML = "Number of bushes checked is "+ 0
+        document.getElementById("penalty").innerHTML = "penalty is "+ 0
+        mouseLocation = Math.floor(Math.random() * 24)
+        catLocation = Math.floor(Math.random() * 24)
+        if(cat_location == 13){
+            restart()
+        }
+        if(mouseLocation==21)
         {
-          document.getElementById(imageID[i]).src = "./images/bush.jpg";
+            restart()
         }
     }
+
 
 </script>    
 </div>
